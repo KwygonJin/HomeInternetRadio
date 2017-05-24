@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Radio.UA</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="one">one</string>
+    <string name="hit_fm_url">http://online-hitfm.tavrmedia.ua/HitFM</string>
+    <string name="rus_radio_url">http://online-rusradio.tavrmedia.ua/RusRadio</string>
+    <string name="kiss_fm_url">http://online-kissfm.tavrmedia.ua/KissFM</string>
+    <string name="radio_rocks_url">http://online-radioroks.tavrmedia.ua/RadioROKS</string>
+    <string name="radio_relax_url">http://online-radiorelax2.tavrmedia.ua/RadioRelax</string>
+    <string name="genre_pop">pop</string>
+    <string name="genre_dance">dance</string>
+    <string name="genre_rock">rock</string>
+    <string name="lux_fm_url">http://icecastdc.luxnet.ua/lux</string>
+    <string name="europa_plus_url">http://cast.radiogroup.com.ua:8000/europaplus</string>
+</resources>
