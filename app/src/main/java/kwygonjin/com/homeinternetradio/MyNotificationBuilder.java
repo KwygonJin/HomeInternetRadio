@@ -8,11 +8,8 @@ import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.widget.RemoteViews;
 
-/**
- * Created by KwygonJin on 20.05.2017.
- */
-
-public class MyNotificationBuilder {
+//That class build custom notification to control radio stations via MediaPlayer
+class MyNotificationBuilder {
     static final String ACTION_PREV = "ActionPrev";
     static final String ACTION_NEXT = "ActionNext";
     static final String ACTION_PAUSE_PLAY = "ActionPausePlay";
@@ -22,7 +19,7 @@ public class MyNotificationBuilder {
     static final int NOTIFICATION_ID = 0;
     private static Context context;
 
-    public static NotificationCompat.Builder buildNotification(Context context, RadioItem radioItem, int currentRadioItemPosition) {
+    static NotificationCompat.Builder buildNotification(Context context, RadioItem radioItem, int currentRadioItemPosition) {
         MyNotificationBuilder.context = context;
         //Intent
         Intent intent = createIntent(ACTION_ACTIVITY, currentRadioItemPosition);
@@ -80,6 +77,12 @@ public class MyNotificationBuilder {
 
         // Locate and set the Text into customnotificationtext.xml TextViews
         notificationView.setTextViewText(R.id.status_tv_radioname, radioItem.getName());
+        notificationView.setImageViewResource(R.id.status_btn_prev, android.R.drawable.ic_media_previous);
+        notificationView.setImageViewResource(R.id.status_btn_next, android.R.drawable.ic_media_next);
+        if (RadioPlayer.isPlaying)
+            notificationView.setImageViewResource(R.id.status_btn_pausestop, android.R.drawable.ic_media_pause);
+        else
+            notificationView.setImageViewResource(R.id.status_btn_pausestop, android.R.drawable.ic_media_play);
 
         return notificationView;
     }

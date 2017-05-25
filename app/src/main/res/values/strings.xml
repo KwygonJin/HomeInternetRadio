@@ -14,4 +14,8 @@
     <string name="genre_rock">rock</string>
     <string name="lux_fm_url">http://icecastdc.luxnet.ua/lux</string>
     <string name="europa_plus_url">http://cast.radiogroup.com.ua:8000/europaplus</string>
+    <string name="desc_next_radio_station">Next radiostation</string>
+    <string name="desc_play_pause_radio_station">Play pause radiostation</string>
+    <string name="desc_preious_radio_station">Preious radiostation</string>
+    <string name="desc_image_of_radiostation">Image of radiostation</string>
 </resources>

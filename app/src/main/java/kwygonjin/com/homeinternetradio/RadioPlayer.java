@@ -16,14 +16,12 @@ import java.io.IOException;
 
 import io.realm.Realm;
 
-/**
- * Created by KwygonJin on 03.04.2017.
- */
 
-//This claa create and control MediaPlayer
+//This class create and control MediaPlayer
 //TODO: need change that class to service maybe
 
-public class RadioPlayer {
+class RadioPlayer {
+    static boolean isPlaying;
     private static MediaPlayer mediaPlayer;
     private static boolean isInPrepareAsync = false;
     private static boolean needPlay = false;
@@ -31,18 +29,18 @@ public class RadioPlayer {
     private static boolean mCancel = false;
     private static RadioItem mRadioItem;
     private static RadioItem mOldRadioItem;
-    private static Realm mRealm;
 
     //Run or stop MP, depending on it current state
-    public static void runPlayer(RadioItem radioItem, Context context, int position, boolean runFromReciever){
+    static void runPlayer(RadioItem radioItem, Context context, int position, boolean runFromReciever){
 
-        mRealm = Realm.getDefaultInstance();
+        Realm mRealm = Realm.getDefaultInstance();
         mRealm.beginTransaction();
         if (mOldRadioItem != null)
             mOldRadioItem.setCurrent(!mOldRadioItem.isCurrent());
         mRadioItem = radioItem;
         mOldRadioItem = mRadioItem;
-        radioItem.setCurrent(!mRadioItem.isCurrent());
+        if (!mRadioItem.getURL().equals(playingURL))
+            radioItem.setCurrent(!mRadioItem.isCurrent());
         mRealm.commitTransaction();
 
         if (mediaPlayer != null &&  mediaPlayer.isPlaying()) {
@@ -99,11 +97,12 @@ public class RadioPlayer {
 
     private static void stop(){
         mediaPlayer.stop();
+        isPlaying = false;
     }
 
     //Start MP
     private static void start(final Context context, final boolean runFromReciever){
-
+        isPlaying = true;
         //When MP are in Prepared, set isInPrepareAsync true
         isInPrepareAsync = true;
 

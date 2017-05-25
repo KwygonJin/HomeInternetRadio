@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_weight="3"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:srcCompat="@mipmap/ic_launcher"
+        android:contentDescription="@string/desc_image_of_radiostation" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,9 +23,9 @@
             android:id="@+id/status_tv_radioname"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:gravity="center_horizontal"
-            android:textColor="@color/colorAccent"
-            android:textSize="12sp" />
+            android:gravity="center"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="32sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,6 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:layout_weight="1"
+                android:contentDescription="@string/desc_preious_radio_station"
                 app:srcCompat="@android:drawable/ic_media_previous" />
 
             <ImageButton
@@ -43,14 +45,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:drawable/ic_media_play" />
+                app:srcCompat="@android:drawable/ic_media_play"
+                android:contentDescription="@string/desc_play_pause_radio_station" />
 
             <ImageButton
                 android:id="@+id/status_btn_next"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:drawable/ic_media_next" />
+                app:srcCompat="@android:drawable/ic_media_next"
+                android:contentDescription="@string/desc_next_radio_station" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
