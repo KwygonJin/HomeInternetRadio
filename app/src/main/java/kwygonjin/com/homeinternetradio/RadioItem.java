@@ -8,9 +8,6 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
 
-/**
- * Created by KwygonJin on 29.03.2017.
- */
 
 //RadioItem class for desc RadioStations(RS)
 //Contains:
@@ -41,6 +38,7 @@ public class RadioItem extends RealmObject {
     private boolean favorite;
     private String genre;
     private boolean isCurrent;
+    private boolean isAddItem;
 
     public String getName() {
         return name;
@@ -58,11 +56,11 @@ public class RadioItem extends RealmObject {
         this.id = id;
     }
 
-    public String getImg() {
+    String getImg() {
         return img;
     }
 
-    public void setImgresource(String img) {
+    void setImgresource(String img) {
         this.img = img;
     }
 
@@ -70,7 +68,7 @@ public class RadioItem extends RealmObject {
         return genre;
     }
 
-    public void setGenre(String genre) {
+    void setGenre(String genre) {
         this.genre = genre;
     }
 
@@ -78,23 +76,31 @@ public class RadioItem extends RealmObject {
         return favorite;
     }
 
-    public void setFavorite(boolean favorite) {
+    void setFavorite(boolean favorite) {
         this.favorite = favorite;
     }
 
-    public String getURL() {
+    String getURL() {
         return URL;
     }
 
-    public void setURL(String URL) {
+    void setURL(String URL) {
         this.URL = URL;
     }
 
-    public boolean isCurrent() {
+    boolean isCurrent() {
         return isCurrent;
     }
 
-    public void setCurrent(boolean current) {
+    void setCurrent(boolean current) {
         isCurrent = current;
+    }
+
+    boolean isAddItem() {
+        return isAddItem;
+    }
+
+    void setAddItem(boolean addItem) {
+        isAddItem = addItem;
     }
 }

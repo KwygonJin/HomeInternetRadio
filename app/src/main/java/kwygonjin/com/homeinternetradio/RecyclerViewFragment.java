@@ -1,10 +1,12 @@
 package kwygonjin.com.homeinternetradio;
 
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -50,7 +52,32 @@ public class RecyclerViewFragment extends Fragment implements RecyclerViewClickL
 
     @Override
     public void recyclerViewListClicked(View v, RadioItem radioItem, int position) {
-        RadioPlayer.runPlayer(radioItem, getContext(), position, false);
+        if (radioItem.isAddItem()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            // Get the layout inflater
+            LayoutInflater inflater = getActivity().getLayoutInflater();
+
+            // Inflate and set the layout for the dialog
+            // Pass null as the parent view because its going in the dialog layout
+            builder.setView(inflater.inflate(R.layout.new_radioitem_dialog, null))
+                    // Add action buttons
+                    .setPositiveButton(R.string.add_radiostation, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+                            // sign in the user ...
+                        }
+                    })
+                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                        }
+                    });
+            builder.create();
+
+            builder.show();
+        }
+        else
+            RadioPlayer.runPlayer(radioItem, getContext(), position, false);
     }
 
     @Override

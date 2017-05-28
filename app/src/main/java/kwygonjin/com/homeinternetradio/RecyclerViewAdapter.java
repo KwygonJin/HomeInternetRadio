@@ -26,16 +26,11 @@ import butterknife.ButterKnife;
 import io.realm.*;
 import io.realm.OrderedRealmCollection;
 
-/**
- * Created by KwygonJin on 29.03.2017.
- */
-
+//Default adapter for RV
 //TODO: add favorite radio functions
 
-public class RecyclerViewAdapter extends RealmRecyclerViewAdapter<RadioItem, RecyclerViewAdapter.RadioViewHolder> {
+class RecyclerViewAdapter extends RealmRecyclerViewAdapter<RadioItem, RecyclerViewAdapter.RadioViewHolder> {
     static List<RadioItem> radioItemList;
-    private static RadioItem prevRadioItem;
-    private Realm mRealm;
     private Context context;
     private static RecyclerViewClickListener itemListener;
 
@@ -65,7 +60,6 @@ public class RecyclerViewAdapter extends RealmRecyclerViewAdapter<RadioItem, Rec
 
     RecyclerViewAdapter(Context context, RecyclerViewClickListener itemListener, OrderedRealmCollection<RadioItem> data) {
         super(data, true);
-        this.mRealm = mRealm;
         this.context = context;
         radioItemList = data;
         RecyclerViewAdapter.itemListener = itemListener;

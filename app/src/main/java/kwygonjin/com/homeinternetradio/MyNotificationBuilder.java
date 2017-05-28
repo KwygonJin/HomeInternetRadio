@@ -50,6 +50,7 @@ class MyNotificationBuilder {
             remoteViews.setOnClickPendingIntent(R.id.status_btn_prev, button_pIntentPrev);
             remoteViews.setOnClickPendingIntent(R.id.status_btn_pausestop, button_pIntentPausePlay);
             builder = builder.setContent(remoteViews);
+            builder.setStyle(new NotificationCompat.BigTextStyle());
             builder = builder.setCustomBigContentView(remoteViews);
             //builder.setLargeIcon(BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.kissfm));
         } else {
