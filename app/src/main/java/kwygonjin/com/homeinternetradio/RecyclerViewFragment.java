@@ -14,7 +14,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
@@ -22,6 +27,14 @@ import io.realm.RealmConfiguration;
 public class RecyclerViewFragment extends Fragment implements RecyclerViewClickListener {
     private static final int SPAN_COUNT = 2;
     private Realm mRealm;
+    @BindView(R.id.et_radiostation_name)
+    EditText etRadioName;
+    @BindView(R.id.et_radiostation_genre)
+    EditText etRadioGenre;
+    @BindView(R.id.et_radiostation_url)
+    EditText etRadioURL;
+    @BindView(R.id.et_radiostation_img)
+    EditText etRadioImg;
 
     private enum LayoutManagerType {
         GRID_LAYOUT_MANAGER,
@@ -33,7 +46,6 @@ public class RecyclerViewFragment extends Fragment implements RecyclerViewClickL
     protected RecyclerView mRecyclerView;
     protected RecyclerViewAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
-    private Cursor cursor;
 
     public RecyclerViewFragment() {
         // Required empty public constructor
@@ -52,19 +64,33 @@ public class RecyclerViewFragment extends Fragment implements RecyclerViewClickL
 
     @Override
     public void recyclerViewListClicked(View v, RadioItem radioItem, int position) {
+
+
         if (radioItem.isAddItem()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             // Get the layout inflater
             LayoutInflater inflater = getActivity().getLayoutInflater();
+            View view = inflater.inflate(R.layout.new_radioitem_dialog, null);
+            ButterKnife.bind(this, view);
 
             // Inflate and set the layout for the dialog
             // Pass null as the parent view because its going in the dialog layout
-            builder.setView(inflater.inflate(R.layout.new_radioitem_dialog, null))
+            builder.setView(view)
                     // Add action buttons
                     .setPositiveButton(R.string.add_radiostation, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int id) {
-                            // sign in the user ...
+                            Realm mRealm = Realm.getDefaultInstance();
+                            mRealm.beginTransaction();
+                            RadioItem radioItem = mRealm.createObject(RadioItem.class);
+                            radioItem.setName(etRadioName.getText().toString());
+                            radioItem.setImgresource(etRadioImg.getText().toString());
+                            radioItem.setFavorite(false);
+                            radioItem.setGenre(etRadioGenre.getText().toString());
+                            radioItem.setURL(etRadioURL.getText().toString());
+                            radioItem.setAddItem(false);
+                            mRealm.commitTransaction();
+                            mAdapter.notifyDataSetChanged();
                         }
                     })
                     .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

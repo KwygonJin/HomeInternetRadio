@@ -1,6 +1,7 @@
 package kwygonjin.com.homeinternetradio;
 
 import android.app.Application;
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -49,9 +50,11 @@ class MyNotificationBuilder {
             remoteViews.setOnClickPendingIntent(R.id.status_btn_next, button_pIntentNext);
             remoteViews.setOnClickPendingIntent(R.id.status_btn_prev, button_pIntentPrev);
             remoteViews.setOnClickPendingIntent(R.id.status_btn_pausestop, button_pIntentPausePlay);
-            builder = builder.setContent(remoteViews);
-            builder.setStyle(new NotificationCompat.BigTextStyle());
-            builder = builder.setCustomBigContentView(remoteViews);
+            builder.setContent(remoteViews);
+            builder.setCustomBigContentView(remoteViews);
+
+            //builder.setStyle(new NotificationCompat.BigTextStyle());
+            //builder = builder.setCustomBigContentView(remoteViews);
             //builder.setLargeIcon(BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.kissfm));
         } else {
             // Build a simpler notification, without buttons
