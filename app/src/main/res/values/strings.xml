@@ -25,4 +25,8 @@
     <string name="radiostation_genre">Genre</string>
     <string name="add_radiostation">Add</string>
     <string name="cancel">Cancel</string>
+    <string name="title_activity_radio_item">Radiostation</string>
+    <string name="radioitem_save">Save</string>
+    <string name="radioitem_cancel">Cancel</string>
+    <string name="radioitem_add_from_app">Add from app</string>
 </resources>
