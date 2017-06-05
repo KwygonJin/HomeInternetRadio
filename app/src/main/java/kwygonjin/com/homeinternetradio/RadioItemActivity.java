@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +33,16 @@ public class RadioItemActivity extends AppCompatActivity {
     EditText etRadioImg;
     @BindView(R.id.et_radiostation_genre)
     EditText etRadioGenre;
+    @BindView(R.id.iv_content_radiologo)
+    ImageView ivRadioLogo;
+    @BindView(R.id.rb_img_path)
+    RadioButton rbImgPath;
+    @BindView(R.id.rb_img_url)
+    RadioButton rbImgURL;
+    @BindView(R.id.rg_img)
+    RadioGroup rgImg;
+
+    private int FILE_SELECT_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +52,7 @@ public class RadioItemActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ButterKnife.bind(this);
+        rgImg.check(R.id.rb_img_path);
     }
 
     @OnClick(R.id.btn_save)
@@ -66,6 +79,23 @@ public class RadioItemActivity extends AppCompatActivity {
         finish();
     }
 
+    @OnClick(R.id.et_radiostation_img)
+    void selectImgFromFile (){
+        if (rgImg.getCheckedRadioButtonId() != R.id.rb_img_path)
+            return;
+
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        //intent.setType("*/*");      //all files
+        intent.setType("*/*");   //XML file only
+
+        try {
+            startActivityForResult(Intent.createChooser(intent, "Select image file"), FILE_SELECT_CODE);
+        } catch (android.content.ActivityNotFoundException ex) {
+            // Potentially direct the user to the Market with a Dialog
+            Toast.makeText(this, "Please install a File Manager.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @OnClick(R.id.btn_add_from_app)
     void addRadioItemFromApp (){
         Toast.makeText(this, "Not work yet :(", Toast.LENGTH_LONG).show();
@@ -80,5 +110,16 @@ public class RadioItemActivity extends AppCompatActivity {
 
     private boolean isEmpty(EditText etText) {
         return etText.getText().toString().trim().length() == 0;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+
+            if (requestCode == FILE_SELECT_CODE) {
+
+            }
+        }
     }
 }

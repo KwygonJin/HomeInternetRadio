@@ -21,7 +21,7 @@
     <string name="new_radiostation">New radiostation</string>
     <string name="radiostation_url">URL</string>
     <string name="radiostation_name">Name</string>
-    <string name="radiostation_url_icon">URL of icon</string>
+    <string name="radiostation_url_icon">URL\Path of icon</string>
     <string name="radiostation_genre">Genre</string>
     <string name="add_radiostation">Add</string>
     <string name="cancel">Cancel</string>
@@ -29,4 +29,6 @@
     <string name="radioitem_save">Save</string>
     <string name="radioitem_cancel">Cancel</string>
     <string name="radioitem_add_from_app">Add from app</string>
+    <string name="path">Path</string>
+    <string name="url">URL</string>
 </resources>
